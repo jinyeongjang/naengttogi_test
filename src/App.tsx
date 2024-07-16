@@ -75,14 +75,14 @@ function App() {
         <Header />
         <main className="flex-grow">
           <Routes>
-            <Route path="/" element={<Navigate to="/login" replace />} />
+            <Route path="/" element={<Navigate to="/Login" replace />} />
             <Route
-              path="/login"
+              path="/Login"
               element={
                 <Login
                   onLogin={handleLogin}
                   onGoogleLogin={handleGoogleLogin}
-                  onEmailLogin={() => handleEmailLogin("")} // 변경된 부분
+                  onEmailLogin={() => handleEmailLogin("")}
                   onForgotCredentials={handleForgotCredentials}
                   onSignUp={handleSignUp}
                 />
@@ -105,7 +105,7 @@ function App() {
                 user ? (
                   <UserLoginTest user={user} />
                 ) : (
-                  <Navigate to="/login" replace />
+                  <Navigate to="Login" replace />
                 )
               }
             />
