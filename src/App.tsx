@@ -12,7 +12,6 @@ import LoginToEmail from "./pages/LoginToEmail";
 function App() {
   const handleLogin = (username: string, password: string) => {
     console.log("Login attempt:", username, password);
-    // 로그인 로직 구현
   };
 
   const handleGoogleLogin = () => {
