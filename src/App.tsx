@@ -5,6 +5,32 @@ import Login from "./pages/Login";
 import LoginToEmail from "./pages/LoginToEmail";
 
 function App() {
+  // 필요한 함수들을 여기에 정의합니다.
+  const handleLogin = () => {
+    // 로그인 로직
+    console.log("Login");
+  };
+
+  const handleGoogleLogin = () => {
+    // Google 로그인 로직
+    console.log("Google Login");
+  };
+
+  const handleEmailLogin = () => {
+    // 이메일 로그인 로직
+    console.log("Email Login");
+  };
+
+  const handleForgotCredentials = () => {
+    // 비밀번호 찾기 로직
+    console.log("Forgot Credentials");
+  };
+
+  const handleSignUp = () => {
+    // 회원가입 로직
+    console.log("Sign Up");
+  };
+
   return (
     <Router>
       <div className="App flex flex-col min-h-screen">
@@ -19,8 +45,29 @@ function App() {
                 </div>
               }
             />
-            <Route path="/Login" element={<Login />} />
-            <Route path="/LoginToEmail" element={<LoginToEmail />} />
+            <Route
+              path="/login"
+              element={
+                <Login
+                  onLogin={handleLogin}
+                  onGoogleLogin={handleGoogleLogin}
+                  onEmailLogin={handleEmailLogin}
+                  onForgotCredentials={handleForgotCredentials}
+                  onSignUp={handleSignUp}
+                />
+              }
+            />
+            <Route
+              path="/login-to-email"
+              element={
+                <LoginToEmail
+                  onLogin={handleLogin}
+                  onGoogleLogin={handleGoogleLogin}
+                  onForgotCredentials={handleForgotCredentials}
+                  onSignUp={handleSignUp}
+                />
+              }
+            />
           </Routes>
         </main>
         <NavBar />
