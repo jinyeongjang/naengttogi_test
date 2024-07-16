@@ -1,9 +1,5 @@
-import React from 'react'
-
 const UserRecipeDetail = () => {
-  return (
-    <div>UserRecipeDetail</div>
-  )
-}
+  return <div>UserRecipeDetail</div>;
+};
 
-export default UserRecipeDetail
+export default UserRecipeDetail;

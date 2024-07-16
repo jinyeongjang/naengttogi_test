@@ -1,5 +1,4 @@
-// src/App.tsx
-import React, { useState } from "react";
+import { useState } from "react";
 import {
   BrowserRouter as Router,
   Route,
@@ -12,12 +11,25 @@ import Login from "./pages/Login";
 import LoginToEmail from "./pages/LoginToEmail";
 import UserLoginTest from "./pages/UserLoginTest";
 
+// User 인터페이스 정의
+interface User {
+  id: string;
+  username: string;
+  email: string;
+  fullName: string;
+  loginTime: string;
+  loginMethod: string;
+  lastLoginIP?: string;
+  userAgent?: string;
+  roles?: string[];
+}
+
 function App() {
-  const [user, setUser] = useState<any>(null);
+  const [user, setUser] = useState<User | null>(null);
 
   const handleLogin = (username: string, password: string) => {
     console.log("Login attempt:", username, password);
-    const testUser = {
+    const testUser: User = {
       username,
       loginTime: new Date().toISOString(),
       loginMethod: "standard",
@@ -33,7 +45,7 @@ function App() {
 
   const handleGoogleLogin = () => {
     console.log("Google login attempt");
-    const testGoogleUser = {
+    const testGoogleUser: User = {
       id: "google-" + Math.random().toString(36).substr(2, 9),
       username: "google_user",
       email: "google_user@gmail.com",
@@ -44,8 +56,9 @@ function App() {
     setUser(testGoogleUser);
   };
 
-  const handleEmailLogin = () => {
-    console.log("Email login attempt");
+  const handleEmailLogin = (email: string) => {
+    console.log("Email login attempt", email);
+    // 이메일 로그인 로직 구현
   };
 
   const handleForgotCredentials = () => {
@@ -69,13 +82,23 @@ function App() {
                 <Login
                   onLogin={handleLogin}
                   onGoogleLogin={handleGoogleLogin}
-                  onEmailLogin={handleEmailLogin}
+                  onEmailLogin={() => handleEmailLogin("")} // 변경된 부분
                   onForgotCredentials={handleForgotCredentials}
                   onSignUp={handleSignUp}
                 />
               }
             />
-            <Route path="/loginToEmail" element={<LoginToEmail />} />
+            <Route
+              path="/LoginToEmail"
+              element={
+                <LoginToEmail
+                  onLogin={handleEmailLogin}
+                  onGoogleLogin={handleGoogleLogin}
+                  onForgotCredentials={handleForgotCredentials}
+                  onSignUp={handleSignUp}
+                />
+              }
+            />
             <Route
               path="/UserLoginTest"
               element={
